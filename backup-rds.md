@@ -22,3 +22,9 @@ kubectl port-forward backup-rds 8080:80
 ```
 
 Download backup files: http://localhost:8080/
+
+cleanup:
+```bash
+kubectl delete pod backup-rds
+```
+
