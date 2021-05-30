@@ -22,5 +22,5 @@ restore nms database:
 ```bash
 mysql --user=magma --password=wllctel2007 \
   --host=nmsdb.c39jlnqmtsml.us-west-2.rds.amazonaws.com \
-  magma < nmsdb-test.sql
+  magma < /tmp/nmsdb-test.sql
 ```
