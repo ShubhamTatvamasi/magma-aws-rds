@@ -27,4 +27,18 @@ cleanup:
 ```bash
 kubectl delete pod backup-rds
 ```
+---
+
+### Production
+
+brisanet production backup:
+```bash
+kubectl exec -it backup-rds -- sh -c "echo && \
+  mysqldump --user=magma --password=BrisaLTEwll \
+    --host=nmsdb.cvdy4w9bkc0q.us-west-2.rds.amazonaws.com \
+    magma > nmsdb-production.sql && \
+  PGPASSWORD=BrisaLTEwll pg_dump --username=orc8r \
+    --host=orc8rdb.cvdy4w9bkc0q.us-west-2.rds.amazonaws.com \
+    orc8r > orc8rdb-production.sql"
+```
 
