@@ -1,6 +1,9 @@
 # restore-rds
 
-
+connect to the backup-rds pod:
+```bash
+kubectl exec -it backup-rds -- sh
+```
 
 drop and create new magma database:
 ```mysql
