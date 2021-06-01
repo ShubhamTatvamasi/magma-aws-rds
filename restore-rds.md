@@ -8,6 +8,7 @@ kubectl cp orc8rdb-production.sql backup-rds:/rds/orc8rdb-production.sql
 ```
 ---
 
+### mysql restore
 
 connect to the backup-rds pod:
 ```bash
@@ -31,6 +32,15 @@ restore nms database:
 mysql --user=magma --password=wllctel2007 \
   --host=nmsdb.c39jlnqmtsml.us-west-2.rds.amazonaws.com \
   magma < /rds/nmsdb-test.sql
+```
+
+### restore postgresql
+
+connect to postgres:
+```bash
+export PGPASSWORD=wllctel2007
+psql --username=orc8r --dbname=orc8r \
+  --host=orc8rdb.c39jlnqmtsml.us-west-2.rds.amazonaws.com
 ```
 
 
