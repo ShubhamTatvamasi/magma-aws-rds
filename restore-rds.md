@@ -1,5 +1,14 @@
 # restore-rds
 
+
+copy backups to the container:
+```bash
+kubectl cp nmsdb-production.sql backup-rds:/rds/nmsdb-production.sql
+kubectl cp orc8rdb-production.sql backup-rds:/rds/orc8rdb-production.sql
+```
+---
+
+
 connect to the backup-rds pod:
 ```bash
 kubectl exec -it backup-rds -- sh
@@ -48,7 +57,4 @@ psql --username=orc8r --dbname=orc8r \
   < orc8rdb-test.sql
 ```
 
-copy file to the container:
-```bash
-kubectl cp nmsdb-test.sql /tmp/nmsdb-test.sql
-```
+
