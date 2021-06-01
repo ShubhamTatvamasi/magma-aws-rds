@@ -52,6 +52,8 @@ SELECT pid FROM pg_stat_activity WHERE usename = 'orc8r';
 SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = 'orc8r' AND pg_backend_pid() != pid;
 
 ALTER DATABASE orc8r RENAME TO orc8r_bak;
+
+DROP DATABASE orc8r;
 ```
 
 create database:
