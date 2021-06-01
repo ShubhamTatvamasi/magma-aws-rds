@@ -39,10 +39,9 @@ mysql --user=magma --password=wllctel2007 \
 connect to postgres:
 ```bash
 export PGPASSWORD=wllctel2007
-psql --username=orc8r --dbname=orc8r \
+psql --username=postgres --dbname=orc8r \
   --host=orc8rdb.c39jlnqmtsml.us-west-2.rds.amazonaws.com
 ```
-
 
 rename database:
 ```
