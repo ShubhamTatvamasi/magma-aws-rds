@@ -3,6 +3,10 @@
 connect to the backup-rds pod:
 ```bash
 kubectl exec -it backup-rds -- sh
+```
+
+connect to mysql:
+```bash
 mysql --user=magma --password=wllctel2007 --database=magma \
   --host=nmsdb.c39jlnqmtsml.us-west-2.rds.amazonaws.com
 ```
@@ -13,14 +17,38 @@ DROP DATABASE magma;
 CREATE DATABASE magma;
 ```
 
-copy file to the container:
-```bash
-kubectl cp nmsdb-test.sql /tmp/nmsdb-test.sql
-```
-
 restore nms database:
 ```bash
 mysql --user=magma --password=wllctel2007 \
   --host=nmsdb.c39jlnqmtsml.us-west-2.rds.amazonaws.com \
-  magma < /tmp/nmsdb-test.sql
+  magma < /rds/nmsdb-test.sql
+```
+
+
+rename database:
+```
+ALTER DATABASE orc8r CONNECTION LIMIT 0;
+SELECT * FROM pg_stat_activity;
+SELECT pid FROM pg_stat_activity WHERE usename = 'orc8r';
+
+SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = 'orc8r' AND pg_backend_pid() != pid;
+
+ALTER DATABASE orc8r RENAME TO orc8r_bak;
+```
+
+create database:
+```
+CREATE DATABASE orc8r WITH OWNER orc8r;
+```
+
+restore database:
+```bash
+psql --username=orc8r --dbname=orc8r \
+  --host=orc8rdb.c39jlnqmtsml.us-west-2.rds.amazonaws.com \
+  < orc8rdb-test.sql
+```
+
+copy file to the container:
+```bash
+kubectl cp nmsdb-test.sql /tmp/nmsdb-test.sql
 ```
